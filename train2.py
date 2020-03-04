@@ -71,17 +71,16 @@ if __name__ == '__main__':
     print("type (input): ", type(input))
     print("input.shape: ", input.shape)
 
+    noise = 0.0
+    # noise = np.random.normal(0, 0.01, input.size(1))
+
     target = torch.from_numpy(data[3:, 1:])
     print("target.shape: ", target.shape)
 
-    test_input = torch.from_numpy(data[:3, :-1])
+    test_input = torch.from_numpy(data[:3, :-1] + noise)
     print("test_input.shape: ", test_input.shape)
 
-    noise = np.random.normal(0, 0.5, test_input.size(1))
-
-    test_input += noise
-
-    test_target = torch.from_numpy(data[:3, 1:] + noise)
+    test_target = torch.from_numpy(data[:3, 1:])
     print("test_target.shape: ", test_target.shape)
 
     # build the model
